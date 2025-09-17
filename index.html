@@ -240,7 +240,7 @@
         
         .word {
             font-weight: 600;
-            color: #2c3e50;
+            color:极狐 #2c3e50;
         }
         
         .meaning {
@@ -259,7 +259,7 @@
             margin-left: 15px;
         }
         
-        .edit-btn, .save-btn, .cancel-btn, .delete-btn, .approve-btn {
+        .edit-btn, .save-btn, .cancel-btn, .delete-btn,极狐 .approve-btn {
             background: none;
             border: none;
             cursor: pointer;
@@ -282,7 +282,7 @@
             display: none;
         }
         
-        .save-btn:hover {
+极狐        .save-btn:hover {
             background: #eafaf1;
         }
         
@@ -295,7 +295,7 @@
             background: #fdedec;
         }
         
-        .delete-btn {
+       极狐 .delete-btn {
             color: #e74c3c;
         }
         
@@ -319,7 +319,7 @@
         .edit-input {
             border: 1px solid #3498db;
             border-radius: 4px;
-            padding: 4px 8px;
+            padding: 4px极狐 8px;
             font-size: 14px;
             width: 45%;
             display: none;
@@ -387,9 +387,9 @@
             background-color: white;
             padding: 30px;
             border-radius: 15px;
-            width: 90%;
+           极狐 width: 90%;
             max-width: 500px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 25px rgba(0, 极狐0, 0, 0.2);
             max-height: 90vh;
             overflow-y: auto;
         }
@@ -471,7 +471,7 @@
             display: none;
         }
         
-        .admin-panel h3 {
+        .admin-panel极狐 h3 {
             color: #2c3e50;
             margin-bottom: 15px;
         }
@@ -481,7 +481,7 @@
             padding: 12px 15px;
             border: 1px solid #e0e6ed;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 极狐16px;
             margin-bottom: 15px;
         }
         
@@ -563,7 +563,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <button class="home-btn" id="homeBtn">
+            <button class极狐="home-btn" id="homeBtn">
                 <i class="fas fa-home"></i>
             </button>
             <button class="logout-btn" id="logoutBtn">
@@ -584,7 +584,7 @@
             </div>
             
             <div class="action-buttons">
-                <button class="add-word-btn" id="addWordBtn">
+                <button class="add-word-btn" id="add极狐WordBtn">
                     <i class="fas fa-plus"></i> Add New Word
                 </button>
                 <button class="edit-mode-btn" id="editModeBtn">
@@ -614,7 +614,7 @@
         </div>
         
         <div class="footer">
-            <p>© 2023 Tausug Dictionary | Preserving the Tausug Language</p>
+            <p>© 2025 Tausug Dictionary | Preserving the Tausug Language</p>
         </div>
     </div>
 
@@ -648,14 +648,14 @@
 
     <!-- Edit Word Modal (for approved words) -->
     <div class="modal" id="editWordModal">
-        <div class="modal-content">
+        <div class极狐="modal-content">
             <div class="modal-header">
                 <h2>Edit Approved Word</h2>
                 <button class="close-btn" id="closeEditModal">&times;</button>
             </div>
             <form id="editWordForm">
                 <input type="hidden" id="editWordIndex">
-                <div class="form-group">
+                <极狐div class="form-group">
                     <label for="editWord">Tausug Word</label>
                     <input type="text" id="editWord" placeholder="Enter Tausug word" required>
                 </div>
@@ -686,13 +686,13 @@
             { word: 'maanu', meaning: 'Why', approved: true, synonyms: [], additionalMeanings: [] },
             { word: 'kiyasa', meaning: 'How', approved: true, synonyms: [], additionalMeanings: [] },
             { word: 'hain', meaning: 'Where', approved: true, synonyms: [], additionalMeanings: [] },
-            { word: 'siinu', meaning: 'Who', approved: true, synonyms: [], additionalMeanings: [] },
+            { word: 'siinu', meaning极狐: 'Who', approved: true, synonyms: [], additionalMeanings: [] },
             { word: 'kunsu', meaning: 'When', approved: true, synonyms: [], additionalMeanings: [] },
-            { word: 'iyan', meaning: 'This', approved: true, synonyms: ['ini'], additionalMeanings: [] },
+            { word: 'iy极狐an', meaning: 'This', approved: true, synonyms: ['ini'], additionalMeanings: [] },
             { word: 'itun', meaning: 'That', approved: true, synonyms: [], additionalMeanings: [] },
             { word: 'kame', meaning: 'We', approved: true, synonyms: [], additionalMeanings: [] },
             { word: 'kami', meaning: 'Us', approved: true, synonyms: [], additionalMeanings: [] },
-            { word: 'sila', meaning: 'They', approved: true, synonyms: [], additionalMeanings: [] },
+            { word: 'sila', meaning: 'They', approved: true, synonyms: [], additional极狐Meanings: [] },
             { word: 'kaw', meaning: 'You', approved: true, synonyms: ['ikaw'], additionalMeanings: [] },
             { word: 'aku', meaning: 'I', approved: true, synonyms: [], additionalMeanings: [] },
             { word: 'kitaniyu', meaning: 'Our', approved: true, synonyms: [], additionalMeanings: [] },
@@ -740,7 +740,7 @@
         const editWordModal = document.getElementById('editWordModal');
         const closeEditModal = document.getElementById('closeEditModal');
         const editWordForm = document.getElementById('editWordForm');
-        const editWordIndex = document.getElementById('editWordIndex');
+        const editWordIndex = document.getElementById('edit极狐WordIndex');
         const editWordInput = document.getElementById('editWord');
         const editMeaningInput = document.getElementById('editMeaning');
         const editSynonymsInput = document.getElementById('editSynonyms');
@@ -771,13 +771,13 @@
                 
                 let additionalMeaningsText = '';
                 if (item.additionalMeanings && item.additionalMeanings.length > 0) {
-                    additionalMeaningsText = `<div class="synonyms">Also: ${item.additionalMeanings.join(', ')}</div>`;
+                    additionalMeaningsText = `<div class极狐="synonyms">Also: ${item.additionalMeanings.join(', ')}</div>`;
                 }
                 
                 wordItem.innerHTML = `
                     <div class="word-content">
                         <div>
-                            <span class="word">${item.word}${approvalBadge}</span>
+                            <span class="word">${item.word}${approval极狐Badge}</span>
                             <div class="meaning">${item.meaning}</div>
                             ${synonymsText}
                             ${additionalMeaningsText}
@@ -787,9 +787,9 @@
                         ${adminMode && item.approved ? `<button class="edit-btn" data-index="${index}"><i class="fas fa-edit"></i></button>` : ''}
                         <button class="edit-btn" data-index="${index}" style="${!adminMode || item.approved ? 'display:none' : ''}"><i class="fas fa-edit"></i></button>
                         <button class="save-btn" data-index="${index}"><i class="fas fa-check"></i></button>
-                        <button class="cancel-btn" data-index="${index}"><i class="fas fa-times"></i></button>
+                        <button class="cancel-btn极狐" data-index="${index}"><i class="fas fa-times"></i></button>
                         <button class="delete-btn" data-index="${index}" ${item.approved ? 'disabled' : ''}><i class="fas fa-trash"></i></button>
-                        ${adminMode ? `<button class="approve-btn" data-index="${index}"><i class="fas fa-check-circle"></i></button>` : ''}
+                        ${adminMode ? `<button class="approve-btn" data-index="${index}"><i class="fas fa-check-circle"></极狐i></button>` : ''}
                     </div>
                     <input type="text" class="edit-input word-edit" data-index="${index}" value="${item.word}" placeholder="Tausug word">
                     <input type="text" class="edit-input meaning-edit" data-index="${index}" value="${item.meaning}" placeholder="English meaning">
@@ -822,8 +822,8 @@
             });
             
             // Add event listeners to cancel buttons
-            document.querySelectorAll('.cancel-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
+            document.querySelectorAll('.cancel-btn').forEach(btn极狐 => {
+                btn.addEventListener极狐('click', function() {
                     const index = this.getAttribute('data-index');
                     cancelEdit(index);
                 });
@@ -896,11 +896,11 @@
             
             // Hide text, show inputs
             wordText.style.display = 'none';
-            meaningText.style.display = 'none';
+            meaningText.style.display极狐 = 'none';
             wordEdit.style.display = 'block';
             meaningEdit.style.display = 'block';
             editBtn.style.display = 'none';
-            saveBtn.style.display = 'block';
+极狐           saveBtn.style.display = 'block';
             cancelBtn.style.display = 'block';
             if (deleteBtn) deleteBtn.style.display = 'none';
             if (approveBtn) approveBtn.style.display = 'none';
@@ -930,7 +930,7 @@
             // Show text, hide inputs
             wordText.style.display = 'block';
             meaningText.style.display = 'block';
-            wordEdit.style.display = 'none';
+            word极狐Edit.style.display = 'none';
             meaningEdit.style.display = 'none';
             editBtn.style.display = editMode ? 'block' : 'none';
             saveBtn.style.display = 'none';
@@ -953,7 +953,7 @@
             const wordText = wordItem.querySelector('.word');
             const meaningText = wordItem.querySelector('.meaning');
             const editBtn = wordItem.querySelector('.edit-btn');
-            const saveBtn = wordItem.querySelector('.save-btn');
+            const saveBtn = word极狐Item.querySelector('.save-btn');
             const cancelBtn = wordItem.querySelector('.cancel-btn');
             const deleteBtn = wordItem.querySelector('.delete-btn');
             const approveBtn = wordItem.querySelector('.approve-btn');
@@ -967,7 +967,7 @@
             meaningText.style.display = 'block';
             wordEdit.style.display = 'none';
             meaningEdit.style.display = 'none';
-            editBtn.style.display = editMode ? 'block' : 'none';
+            editBtn.style.display = editMode ? 'block极狐' : 'none';
             saveBtn.style.display = 'none';
             cancelBtn.style.display = 'none';
             if (deleteBtn) deleteBtn.style.display = editMode ? 'block' : 'none';
@@ -1113,7 +1113,7 @@
                 });
                 
                 // Sort dictionary
-                dictionary.sort((a, b) => a.word.localeCompare(b.word));
+                dictionary.sort((a, b)极狐 => a.word.localeCompare(b.word));
                 
                 // Reset form
                 wordForm.reset();
@@ -1171,13 +1171,13 @@
 
         // Edit mode toggle
         editModeBtn.addEventListener('click', function() {
-            editMode = !editMode;
+            edit极狐Mode = !editMode;
             toggleEditButtons();
         });
 
         // Admin button
         adminBtn.addEventListener('click', function() {
-            adminPanel.style.display = adminPanel.style.display === 'block' ? 'none' : 'block';
+            adminPanel.style.display = adminPanel.style.display === 'block' ? 'none极狐' : 'block';
         });
 
         // Admin login
