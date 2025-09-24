@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tausug Dictionary Online - Words Splitter</title>
+    <title>Translation Word Splitter</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -43,32 +43,17 @@
             margin-bottom: 10px;
         }
         
-        .municipality {
+        .subtitle {
             font-size: 1.1rem;
             opacity: 0.9;
         }
         
-        .description {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-top: 5px;
-        }
-        
         .app-content {
             padding: 25px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-        
-        @media (max-width: 768px) {
-            .app-content {
-                grid-template-columns: 1fr;
-            }
         }
         
         .input-section {
-            grid-column: 1 / -1;
+            margin-bottom: 20px;
         }
         
         textarea {
@@ -80,6 +65,7 @@
             resize: none;
             font-size: 16px;
             transition: all 0.3s;
+            margin-bottom: 15px;
         }
         
         textarea:focus {
@@ -124,14 +110,6 @@
             background: linear-gradient(to right, #2ecc71, #27ae60);
         }
         
-        .firebase-btn {
-            background: linear-gradient(to right, #FFA000, #FF8F00);
-        }
-        
-        .total-btn {
-            background: linear-gradient(to right, #9b59b6, #8e44ad);
-        }
-        
         .clear-btn {
             background: linear-gradient(to right, #e74c3c, #c0392b);
         }
@@ -164,7 +142,7 @@
         }
         
         .word-box {
-            width: 140px;
+            width: 180px;
             padding: 12px;
             border-radius: 8px;
             background-color: white;
@@ -183,30 +161,14 @@
             color: #2575fc;
             margin-bottom: 8px;
             font-size: 16px;
+            word-break: break-word;
         }
         
-        .pos {
-            font-size: 12px;
-            color: #6c757d;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-        
-        .translation-input {
-            width: 100%;
-            padding: 8px;
-            border: 1px dashed #adb5bd;
-            border-radius: 4px;
+        .translation {
+            color: #2ecc71;
             font-size: 14px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        
-        .translation-input:focus {
-            outline: none;
-            border-color: #6a11cb;
-            border-style: solid;
+            margin-top: 5px;
+            word-break: break-word;
         }
         
         .instructions {
@@ -215,7 +177,6 @@
             padding: 15px;
             margin: 20px 0;
             border-radius: 4px;
-            grid-column: 1 / -1;
         }
         
         footer {
@@ -223,7 +184,6 @@
             padding: 15px;
             background-color: #f8f9fa;
             color: #6c757d;
-            grid-column: 1 / -1;
         }
         
         .footer-text {
@@ -235,7 +195,7 @@
             background-color: #f8f9fa;
             border-radius: 10px;
             text-align: center;
-            grid-column: 1 / -1;
+            margin-top: 20px;
         }
         
         .save-options {
@@ -279,21 +239,6 @@
             display: block;
         }
         
-        .language-selector {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 15px 0;
-            align-items: center;
-        }
-        
-        select {
-            padding: 8px 12px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            background: white;
-        }
-        
         .total-display {
             font-size: 1.5rem;
             font-weight: bold;
@@ -302,33 +247,6 @@
             text-align: center;
         }
         
-        .unique-words {
-            margin-top: 15px;
-            padding: 10px;
-            background-color: white;
-            border-radius: 8px;
-            max-height: 150px;
-            overflow-y: auto;
-            text-align: center;
-        }
-        
-        .unique-word {
-            display: inline-block;
-            background: #e8f4fc;
-            padding: 5px 10px;
-            margin: 4px;
-            border-radius: 20px;
-            font-size: 14px;
-        }
-
-        .firebase-options {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
         .stats-section {
             background: white;
             padding: 15px;
@@ -361,104 +279,77 @@
             font-size: 0.9rem;
             color: #6c757d;
         }
-
-        .highlight {
+        
+        .rule-highlight {
             background-color: #fff8e1;
             border-left: 4px solid #ffc107;
             padding: 15px;
             margin: 15px 0;
             border-radius: 4px;
         }
-
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-top: 10px;
+        
+        .rule-text {
+            font-weight: bold;
+            color: #d35400;
+            text-align: center;
+            margin-bottom: 10px;
         }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .feature-icon {
-            color: #6a11cb;
-            font-size: 1.2rem;
+        
+        @media (max-width: 768px) {
+            .word-box {
+                width: 100%;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Tausug Dictionary Online</h1>
-            <div class="municipality">Words Splitter Tool | Omar Municipality, Sulu, Philippines</div>
-            <div class="description">Separate sentences into words with parts of speech and translations</div>
+            <h1>Translation Word Splitter</h1>
+            <div class="subtitle">Split words while preserving translation format</div>
         </header>
         
         <div class="app-content">
             <div class="input-section">
-                <textarea id="inputText" placeholder="Enter a sentence to analyze...">The quick brown fox jumps over the lazy dog. How amazing is this words splitter app!</textarea>
-                <div class="language-selector">
-                    <span>Translate to:</span>
-                    <select id="languageSelect">
-                        <option value="en">English</option>
-                        <option value="ts">Tausug</option>
-                        <option value="tl">Tagalog</option>
-                        <option value="ceb">Cebuano</option>
-                        <option value="ar">Arabic</option>
-                        <option value="ms">Malay</option>
-                        <option value="id">Indonesian</option>
-                        <option value="custom">Custom (Write your own)</option>
-                    </select>
+                <div class="rule-highlight">
+                    <div class="rule-text">RULE: Each word maintains its "word = translation" format after splitting</div>
+                    <p>Paste your translated words in the format: <strong>word = translation</strong></p>
                 </div>
+                
+                <textarea id="inputText" placeholder="Paste your translated words here. Example:
+hello = hola
+good morning = buenos días
+thank you = gracias">hello = hola
+good morning = buenos días
+thank you = gracias</textarea>
+                
                 <div class="buttons">
-                    <button id="processBtn">
+                    <button id="splitBtn">
                         <i class="fas fa-cogs"></i> Split Words
                     </button>
                     <button id="resetBtn" class="clear-btn">
                         <i class="fas fa-redo"></i> Reset
                     </button>
-                    <button id="totalBtn" class="total-btn">
-                        <i class="fas fa-calculator"></i> Calculate
-                    </button>
                 </div>
             </div>
             
             <div class="instructions">
-                <p><strong>How to use this Words Splitter:</strong></p>
+                <p><strong>How to use this Translation Word Splitter:</strong></p>
                 <ol>
-                    <li>Enter a sentence in the text box above</li>
-                    <li>Select your target translation language</li>
-                    <li>Click "Split Words" to separate the sentence into individual words</li>
-                    <li>Edit translations directly in the word boxes if needed</li>
+                    <li>Paste your translated words in the format: <code>word = translation</code></li>
+                    <li>Click "Split Words" to separate each word into individual boxes</li>
+                    <li>Each word will maintain its original "word = translation" format</li>
                     <li>Use the export options to save your work</li>
                 </ol>
             </div>
-
-            <div class="highlight">
-                <h3>✨ Key Features</h3>
-                <div class="feature-list">
-                    <div class="feature-item"><i class="fas fa-check-circle feature-icon"></i> Advanced word splitting</div>
-                    <div class="feature-item"><i class="fas fa-check-circle feature-icon"></i> Parts of speech detection</div>
-                    <div class="feature-item"><i class="fas fa-check-circle feature-icon"></i> Multi-language translation</div>
-                    <div class="feature-item"><i class="fas fa-check-circle feature-icon"></i> Word statistics</div>
-                    <div class="feature-item"><i class="fas fa-check-circle feature-icon"></i> Export options</div>
-                    <div class="feature-item"><i class="fas fa-check-circle feature-icon"></i> Responsive design</div>
-                </div>
-            </div>
-            
-            <div class="output-section">
-                <h2 class="output-title">Word Analysis</h2>
-                <div id="wordsContainer" class="words-container">
-                    <!-- Words will be generated here -->
-                </div>
-            </div>
             
             <div class="stats-section">
-                <h3>Text Statistics</h3>
-                <div id="totalDisplay" class="total-display">Total Words: 0 | Unique Words: 0</div>
+                <h3>Translation Statistics</h3>
+                <div id="totalDisplay" class="total-display">Total Words: 0</div>
                 
                 <div class="stats-grid">
                     <div class="stat-box">
@@ -466,24 +357,26 @@
                         <div class="stat-label">Words</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-value" id="charCount">0</div>
-                        <div class="stat-label">Characters</div>
+                        <div class="stat-value" id="translationCount">0</div>
+                        <div class="stat-label">Translations</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-value" id="sentenceCount">0</div>
-                        <div class="stat-label">Sentences</div>
+                        <div class="stat-value" id="lineCount">0</div>
+                        <div class="stat-label">Lines</div>
                     </div>
                 </div>
-                
-                <h4 style="margin-top: 15px;">Unique Words</h4>
-                <div id="uniqueWords" class="unique-words">
-                    <!-- Unique words will be displayed here -->
+            </div>
+            
+            <div class="output-section">
+                <h2 class="output-title">Split Words</h2>
+                <div id="wordsContainer" class="words-container">
+                    <!-- Words will be generated here -->
                 </div>
             </div>
             
             <div class="save-section">
                 <h3>Save Your Work</h3>
-                <p>Export your word analysis in various formats:</p>
+                <p>Export your translation analysis in various formats:</p>
                 <div class="save-options">
                     <button id="saveJsonBtn" class="save-btn">
                         <i class="fas fa-file-export"></i> Export as JSON
@@ -499,8 +392,8 @@
         </div>
         
         <footer>
-            <p class="footer-text">Tausug Dictionary Online - Words Splitter Tool &copy; 2025</p>
-            <p class="footer-text">Omar Municipality, Sulu, Philippines | Developed for educational purposes</p>
+            <p class="footer-text">Translation Word Splitter &copy; 2025</p>
+            <p class="footer-text">Designed to preserve translation format after splitting</p>
         </footer>
     </div>
 
@@ -510,216 +403,152 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const processBtn = document.getElementById('processBtn');
+            const splitBtn = document.getElementById('splitBtn');
             const resetBtn = document.getElementById('resetBtn');
-            const totalBtn = document.getElementById('totalBtn');
             const inputText = document.getElementById('inputText');
             const wordsContainer = document.getElementById('wordsContainer');
             const saveJsonBtn = document.getElementById('saveJsonBtn');
             const copyJsonBtn = document.getElementById('copyJsonBtn');
             const printBtn = document.getElementById('printBtn');
             const notification = document.getElementById('notification');
-            const languageSelect = document.getElementById('languageSelect');
             const totalDisplay = document.getElementById('totalDisplay');
-            const uniqueWordsContainer = document.getElementById('uniqueWords');
             const wordCountEl = document.getElementById('wordCount');
-            const charCountEl = document.getElementById('charCount');
-            const sentenceCountEl = document.getElementById('sentenceCount');
+            const translationCountEl = document.getElementById('translationCount');
+            const lineCountEl = document.getElementById('lineCount');
             
-            let analyzedWords = [];
-            let uniqueWordsSet = new Set();
+            let wordData = [];
             
-            // Enhanced parts of speech database
-            const partsOfSpeech = {
-                'the': 'determiner', 'a': 'determiner', 'an': 'determiner', 'this': 'determiner', 'that': 'determiner',
-                'quick': 'adjective', 'brown': 'adjective', 'lazy': 'adjective', 'amazing': 'adjective', 'good': 'adjective',
-                'fox': 'noun', 'dog': 'noun', 'app': 'noun', 'words': 'noun', 'splitter': 'noun',
-                'jumps': 'verb', 'jump': 'verb', 'is': 'verb', 'are': 'verb', 'run': 'verb',
-                'over': 'preposition', 'above': 'preposition', 'below': 'preposition', 'on': 'preposition', 'in': 'preposition',
-                'how': 'adverb', 'very': 'adverb', 'quite': 'adverb', 'slowly': 'adverb', 'well': 'adverb',
-                'and': 'conjunction', 'but': 'conjunction', 'or': 'conjunction', 'so': 'conjunction', 'because': 'conjunction'
-            };
-            
-            // Enhanced translations database
-            const translations = {
-                'the': { en: 'the', ts: 'in', tl: 'ang', ceb: 'ang', ar: 'ال' },
-                'quick': { en: 'quick', ts: 'maddas', tl: 'mabilis', ceb: 'paspas', ar: 'سريع' },
-                'brown': { en: 'brown', ts: 'kulay kakah', tl: 'kulay kayumanggi', ceb: 'tabonon', ar: 'بني' },
-                'fox': { en: 'fox', ts: 'urus', tl: 'soro', ceb: 'sora', ar: 'ثعلب' },
-                'jumps': { en: 'jumps', ts: 'lumuksu', tl: 'tumalon', ceb: 'lukso', ar: 'يقفز' },
-                'over': { en: 'over', ts: 'hampang', tl: 'sa ibabaw', ceb: 'sa ibabaw', ar: 'فوق' },
-                'lazy': { en: 'lazy', ts: 'malas', tl: 'tamad', ceb: 'tapulan', ar: 'كسول' },
-                'dog': { en: 'dog', ts: 'iru', tl: 'aso', ceb: 'iro', ar: 'كلب' },
-                'how': { en: 'how', ts: 'biyaunu', tl: 'paano', ceb: 'giunsa', ar: 'كيف' },
-                'amazing': { en: 'amazing', ts: 'mausab', tl: 'kamangha-mangha', ceb: 'katingala', ar: 'مذهل' },
-                'words': { en: 'words', ts: 'manga-ungel', tl: 'mga salita', ceb: 'mga pulong', ar: 'كلمات' },
-                'splitter': { en: 'splitter', ts: 'pamagtangis', tl: 'panghati', ceb: 'tigbahin', ar: 'المقسم' },
-                'app': { en: 'app', ts: 'app', tl: 'app', ceb: 'app', ar: 'تطبيق' }
-            };
-            
-            // Process the sentence
-            processBtn.addEventListener('click', function() {
-                const sentence = inputText.value.trim();
-                if (!sentence) {
-                    showNotification('Please enter a sentence', true);
+            // Split words function
+            splitBtn.addEventListener('click', function() {
+                // Clear previous results
+                wordsContainer.innerHTML = '';
+                wordData = [];
+                
+                // Get input text
+                const text = inputText.value.trim();
+                
+                if (!text) {
+                    showNotification('Please enter some text to split.', true);
                     return;
                 }
                 
-                // Clear previous results
-                wordsContainer.innerHTML = '';
-                analyzedWords = [];
-                uniqueWordsSet.clear();
+                // Split by lines
+                const lines = text.split('\n');
                 
-                // Calculate statistics
-                const wordCount = sentence.split(/\s+/).filter(word => word.length > 0).length;
-                const charCount = sentence.length;
-                const sentenceCount = sentence.split(/[.!?]+/).filter(s => s.length > 0).length;
-                
-                wordCountEl.textContent = wordCount;
-                charCountEl.textContent = charCount;
-                sentenceCountEl.textContent = sentenceCount;
-                
-                // Split into words using improved regex
-                const words = sentence.split(/\s+|(?=[.,!?;:])|(?<=[.,!?;:])/).filter(word => word.trim() !== '');
-                const selectedLanguage = languageSelect.value;
-                
-                // Create word boxes
-                words.forEach(word => {
-                    const cleanWord = word.replace(/[.,!?;:"]/g, '').toLowerCase();
-                    if (!cleanWord) return; // Skip empty words
+                // Process each line
+                lines.forEach((line, lineIndex) => {
+                    // Skip empty lines
+                    if (!line.trim()) return;
                     
-                    const pos = partsOfSpeech[cleanWord] || 'unknown';
+                    // Split by '=' to separate word and translation
+                    const parts = line.split('=');
                     
-                    // Get translation if available
-                    let translation = '';
-                    if (translations[cleanWord] && selectedLanguage !== 'custom') {
-                        translation = translations[cleanWord][selectedLanguage] || '';
+                    if (parts.length < 2) {
+                        // If no '=' found, treat the whole line as a word with no translation
+                        createWordBox(line.trim(), '', lineIndex);
+                    } else {
+                        // Extract word and translation
+                        const word = parts[0].trim();
+                        const translation = parts.slice(1).join('=').trim(); // In case there are multiple '=' signs
+                        
+                        // Create word box with the format "word = translation"
+                        createWordBox(word, translation, lineIndex);
                     }
-                    
-                    // Store word data
-                    analyzedWords.push({
-                        original: word,
-                        clean: cleanWord,
-                        translation: translation,
-                        pos: pos,
-                        hasTranslation: !!translation
-                    });
-                    
-                    // Add to unique words set
-                    uniqueWordsSet.add(cleanWord);
-                    
-                    // Create word box
-                    const wordBox = document.createElement('div');
-                    wordBox.className = 'word-box';
-                    
-                    const wordEl = document.createElement('div');
-                    wordEl.className = 'word';
-                    wordEl.textContent = word;
-                    
-                    const posEl = document.createElement('div');
-                    posEl.className = 'pos';
-                    posEl.textContent = pos;
-                    
-                    const translationInput = document.createElement('input');
-                    translationInput.type = 'text';
-                    translationInput.className = 'translation-input';
-                    translationInput.placeholder = 'Enter translation...';
-                    translationInput.value = translation;
-                    
-                    // Update the data model when translation changes
-                    translationInput.addEventListener('input', function() {
-                        const index = analyzedWords.findIndex(item => item.original === word);
-                        if (index !== -1) {
-                            analyzedWords[index].translation = this.value;
-                            analyzedWords[index].hasTranslation = this.value.trim() !== '';
-                        }
-                    });
-                    
-                    wordBox.appendChild(wordEl);
-                    wordBox.appendChild(posEl);
-                    wordBox.appendChild(translationInput);
-                    
-                    wordsContainer.appendChild(wordBox);
                 });
                 
-                updateTotalDisplay();
-                showNotification(`Split ${words.length} words from your sentence`);
+                updateStatistics();
+                showNotification(`Split ${wordData.length} words from your input`);
             });
+            
+            // Create a word box with the format "word = translation"
+            function createWordBox(word, translation, index) {
+                // Store word data
+                wordData.push({
+                    word: word,
+                    translation: translation,
+                    index: index
+                });
+                
+                // Create word box
+                const wordBox = document.createElement('div');
+                wordBox.className = 'word-box';
+                
+                const wordEl = document.createElement('div');
+                wordEl.className = 'word';
+                wordEl.textContent = word;
+                
+                const equalsEl = document.createElement('div');
+                equalsEl.textContent = '=';
+                equalsEl.style.fontWeight = 'bold';
+                equalsEl.style.margin = '5px 0';
+                
+                const translationEl = document.createElement('div');
+                translationEl.className = 'translation';
+                translationEl.textContent = translation || '(no translation)';
+                
+                wordBox.appendChild(wordEl);
+                wordBox.appendChild(equalsEl);
+                wordBox.appendChild(translationEl);
+                
+                wordsContainer.appendChild(wordBox);
+            }
             
             // Reset the app
             resetBtn.addEventListener('click', function() {
                 inputText.value = '';
                 wordsContainer.innerHTML = '';
-                analyzedWords = [];
-                uniqueWordsSet.clear();
-                updateTotalDisplay();
+                wordData = [];
+                updateStatistics();
                 inputText.focus();
-                
-                // Reset statistics
-                wordCountEl.textContent = '0';
-                charCountEl.textContent = '0';
-                sentenceCountEl.textContent = '0';
                 
                 showNotification('Application reset');
             });
             
-            // Calculate and display total
-            totalBtn.addEventListener('click', function() {
-                updateTotalDisplay();
-                showNotification('Word counts calculated!');
-            });
-            
-            // Update total display
-            function updateTotalDisplay() {
-                totalDisplay.textContent = `Total Words: ${analyzedWords.length} | Unique Words: ${uniqueWordsSet.size}`;
+            // Update statistics
+            function updateStatistics() {
+                const wordCount = wordData.length;
+                const translationCount = wordData.filter(item => item.translation).length;
+                const lineCount = inputText.value.split('\n').filter(line => line.trim()).length;
                 
-                // Display unique words
-                uniqueWordsContainer.innerHTML = '';
-                uniqueWordsSet.forEach(word => {
-                    const wordEl = document.createElement('span');
-                    wordEl.className = 'unique-word';
-                    wordEl.textContent = word;
-                    uniqueWordsContainer.appendChild(wordEl);
-                });
+                totalDisplay.textContent = `Total Words: ${wordCount}`;
+                wordCountEl.textContent = wordCount;
+                translationCountEl.textContent = translationCount;
+                lineCountEl.textContent = lineCount;
             }
             
             // Save as JSON
             saveJsonBtn.addEventListener('click', function() {
-                if (analyzedWords.length === 0) {
-                    alert('Please process a sentence first');
+                if (wordData.length === 0) {
+                    alert('Please split some words first');
                     return;
                 }
                 
                 // Prepare data for export
                 const exportData = {
-                    words: analyzedWords,
-                    language: languageSelect.options[languageSelect.selectedIndex].text,
-                    originalSentence: inputText.value,
+                    words: wordData,
+                    originalText: inputText.value,
                     exportDate: new Date().toISOString(),
-                    totalWords: analyzedWords.length,
-                    uniqueWords: Array.from(uniqueWordsSet)
+                    totalWords: wordData.length
                 };
                 
                 const content = JSON.stringify(exportData, null, 2);
-                downloadFile(content, 'word-splitter-export.json', 'application/json');
+                downloadFile(content, 'translation-splitter-export.json', 'application/json');
                 showNotification('File downloaded successfully!');
             });
             
             // Copy JSON to clipboard
             copyJsonBtn.addEventListener('click', function() {
-                if (analyzedWords.length === 0) {
-                    alert('Please process a sentence first');
+                if (wordData.length === 0) {
+                    alert('Please split some words first');
                     return;
                 }
                 
                 // Prepare data for export
                 const exportData = {
-                    words: analyzedWords,
-                    language: languageSelect.options[languageSelect.selectedIndex].text,
-                    originalSentence: inputText.value,
+                    words: wordData,
+                    originalText: inputText.value,
                     exportDate: new Date().toISOString(),
-                    totalWords: analyzedWords.length,
-                    uniqueWords: Array.from(uniqueWordsSet)
+                    totalWords: wordData.length
                 };
                 
                 const content = JSON.stringify(exportData, null, 2);
@@ -734,8 +563,8 @@
             
             // Print results
             printBtn.addEventListener('click', function() {
-                if (analyzedWords.length === 0) {
-                    alert('Please process a sentence first');
+                if (wordData.length === 0) {
+                    alert('Please split some words first');
                     return;
                 }
                 
@@ -743,7 +572,7 @@
                 printWindow.document.write(`
                     <html>
                     <head>
-                        <title>Words Splitter Export</title>
+                        <title>Translation Splitter Export</title>
                         <style>
                             body { font-family: Arial, sans-serif; padding: 20px; }
                             h1 { color: #6a11cb; }
@@ -754,26 +583,28 @@
                                 margin: 5px; 
                                 border-radius: 5px;
                                 vertical-align: top;
+                                width: 180px;
                             }
-                            .word { font-weight: bold; }
-                            .pos { font-size: 12px; color: #777; }
+                            .word { font-weight: bold; color: #2575fc; }
+                            .translation { color: #2ecc71; margin-top: 5px; }
                         </style>
                     </head>
                     <body>
-                        <h1>Words Splitter Export</h1>
-                        <p><strong>Original Sentence:</strong> ${inputText.value}</p>
+                        <h1>Translation Splitter Export</h1>
+                        <p><strong>Original Text:</strong></p>
+                        <pre>${inputText.value}</pre>
                         <p><strong>Export Date:</strong> ${new Date().toLocaleString()}</p>
-                        <p><strong>Total Words:</strong> ${analyzedWords.length} | <strong>Unique Words:</strong> ${uniqueWordsSet.size}</p>
+                        <p><strong>Total Words:</strong> ${wordData.length}</p>
                         <hr>
-                        <h2>Words Analysis</h2>
+                        <h2>Split Words</h2>
                 `);
                 
-                analyzedWords.forEach(word => {
+                wordData.forEach(item => {
                     printWindow.document.write(`
                         <div class="word-box">
-                            <div class="word">${word.original}</div>
-                            <div class="pos">${word.pos}</div>
-                            <div>${word.translation || 'No translation'}</div>
+                            <div class="word">${item.word}</div>
+                            <div>=</div>
+                            <div class="translation">${item.translation || '(no translation)'}</div>
                         </div>
                     `);
                 });
@@ -808,10 +639,9 @@
                 }, 3000);
             }
             
-            // Process the example sentence on load
-            setTimeout(() => processBtn.click(), 500);
+            // Process the example text on load
+            setTimeout(() => splitBtn.click(), 500);
         });
     </script>
 </body>
 </html>
-
